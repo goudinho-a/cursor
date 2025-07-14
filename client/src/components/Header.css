@@ -1,0 +1,214 @@
+/* Amazon風ヘッダーのスタイル */
+.header {
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  background-color: #131921;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* メインナビゲーション */
+.header__nav {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 15px;
+}
+
+/* ロゴ */
+.header__logo {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.header__logo h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff9f00;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header__logo:hover {
+  border: 1px solid #cdcdcd;
+  border-radius: 2px;
+  padding: 5px;
+}
+
+/* オプション（配送先、サインインなど） */
+.header__option {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 2px;
+  transition: border 0.2s;
+}
+
+.header__option:hover {
+  border: 1px solid #cdcdcd;
+}
+
+.header__optionLineOne {
+  font-size: 10px;
+  color: #cccccc;
+}
+
+.header__optionLineTwo {
+  font-size: 13px;
+  font-weight: 800;
+  color: white;
+}
+
+/* 検索バー */
+.header__search {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  border-radius: 4px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.header__search form {
+  display: flex;
+  width: 100%;
+}
+
+.header__searchInput {
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  width: 100%;
+  font-size: 16px;
+  outline: none;
+}
+
+.header__searchIcon {
+  height: 40px;
+  width: 45px;
+  background-color: #febd69;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.header__searchIcon:hover {
+  background-color: #f3a847;
+}
+
+/* 右側のナビゲーション */
+.header__nav__right {
+  display: flex;
+  align-items: center;
+}
+
+/* カート */
+.header__optionBasket {
+  display: flex;
+  align-items: center;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 2px;
+  transition: border 0.2s;
+}
+
+.header__optionBasket:hover {
+  border: 1px solid #cdcdcd;
+}
+
+.header__basketCount {
+  color: #ff9f00;
+  font-weight: 700;
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+.header__basketIcon {
+  font-size: 24px;
+}
+
+/* サブナビゲーション */
+.header__bottom {
+  display: flex;
+  align-items: center;
+  background-color: #232f3e;
+  height: 39px;
+  padding: 0 15px;
+}
+
+.header__bottom__left {
+  display: flex;
+  align-items: center;
+}
+
+.header__bottom__left span {
+  margin-right: 15px;
+  cursor: pointer;
+  padding: 8px 9px;
+  border-radius: 2px;
+  font-size: 14px;
+  transition: border 0.2s;
+}
+
+.header__bottom__left span:hover {
+  border: 1px solid #cdcdcd;
+}
+
+.header__bottom__left span:first-child {
+  font-weight: 700;
+}
+
+/* レスポンシブデザイン */
+@media screen and (max-width: 768px) {
+  .header {
+    height: auto;
+  }
+
+  .header__nav {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .header__search {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .header__nav__right {
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .header__option {
+    margin: 0 5px;
+  }
+
+  .header__bottom {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 5px;
+  }
+
+  .header__bottom__left span {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+}
