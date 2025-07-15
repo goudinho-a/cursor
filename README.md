@@ -1,114 +1,186 @@
-# 🛒 Amazon風オンラインショッピングサイト
+# 在籍管理システム
 
-プログラミング初心者向けのEコマースサイト構築プロジェクトです。
+## 概要
 
-## 🎯 このプロジェクトで学べること
+社内の在籍状況をリアルタイムで管理・表示するWebアプリケーションです。カレンダー形式で社員の在席状況を直感的に確認でき、部署別フィルタリング機能も搭載しています。
 
-- **React.js**: モダンなフロントエンド開発
-- **Node.js/Express**: サーバーサイド開発
-- **MongoDB**: データベース操作
-- **認証システム**: ユーザー登録・ログイン
-- **決済システム**: Stripe連携
+## 機能
 
-## 📂 プロジェクト構成
+### 主要機能
+- **カレンダー表示**: 社員の在籍状況をカレンダー形式で表示
+- **在籍ステータス管理**: 在席、不在、会議中、リモート、休暇の5種類のステータス
+- **部署別フィルタリング**: 特定の部署の社員のみを表示
+- **リアルタイム更新**: 在籍状況の即座の反映
+- **統計情報**: 日別、週別、月別の在籍統計
 
-```
-amazon-clone/
-├── client/          # フロントエンド（React.js）
-│   ├── src/
-│   │   ├── components/    # 再利用可能なコンポーネント
-│   │   ├── pages/         # ページコンポーネント
-│   │   ├── context/       # 状態管理
-│   │   └── styles/        # スタイル
-│   └── public/
-├── server/          # バックエンド（Node.js + Express）
-│   ├── models/           # データベースモデル
-│   ├── routes/           # APIルート
-│   ├── middleware/       # ミドルウェア
-│   └── utils/           # ユーティリティ関数
-└── README.md        # このファイル
-```
+### 在籍ステータス
+- 🟢 **在席**: オフィスにいる状態
+- 🔴 **不在**: オフィスにいない状態
+- 🔵 **会議中**: 会議に参加中
+- 🟡 **リモート**: リモートワーク中
+- 🟣 **休暇**: 有給休暇・休日
 
-## 🚀 開発手順
+## 技術スタック
 
-### Phase 1: 基本セットアップ
-1. プロジェクトの初期化
-2. フロントエンドの基本構造作成
-3. 基本的なページとコンポーネント作成
+### フロントエンド
+- **React 19** + **TypeScript**
+- **Tailwind CSS**: スタイリング
+- **React Big Calendar**: カレンダー表示
+- **Heroicons**: アイコン
+- **date-fns**: 日付操作
 
-### Phase 2: 商品表示機能
-1. 商品一覧ページ
-2. 商品詳細ページ
-3. 検索機能
+### バックエンド
+- **Node.js** + **Express.js**
+- **MongoDB** + **Mongoose**: データベース
+- **date-fns**: 日付操作
+- **express-validator**: バリデーション
 
-### Phase 3: ユーザー機能
-1. ユーザー登録・ログイン
-2. プロフィール管理
+## インストール・セットアップ
 
-### Phase 4: ショッピング機能
-1. ショッピングカート
-2. 注文機能
-3. 注文履歴
+### 前提条件
+- Node.js (v16以上)
+- MongoDB (v4.4以上)
+- npm または yarn
 
-### Phase 5: 管理者機能
-1. 商品管理
-2. 注文管理
-
-## 🛠 セットアップ方法
-
-### 1. 依存関係のインストール
+### 1. リポジトリのクローン
 ```bash
-# ルートディレクトリで実行
-npm install
-
-# クライアント側の依存関係をインストール
-npm run install-client
-
-# サーバー側の依存関係をインストール
-npm run install-server
+git clone <repository-url>
+cd attendance-management-app
 ```
 
-### 2. 環境変数の設定
+### 2. 依存関係のインストール
 ```bash
-# server/.env ファイルを作成して以下を設定
-MONGODB_URI=mongodb://localhost:27017/amazon-clone
-JWT_SECRET=your-secret-key
-STRIPE_SECRET_KEY=your-stripe-secret-key
+npm run install-all
 ```
 
-### 3. 開発サーバーの起動
+### 3. 環境変数の設定
+サーバーディレクトリに `.env` ファイルを作成：
+
 ```bash
-# フロントエンドとバックエンドを同時に起動
+# server/.env
+MONGODB_URI=mongodb://localhost:27017/attendance_management
+PORT=5000
+CLIENT_URL=http://localhost:3000
+NODE_ENV=development
+```
+
+### 4. MongoDBの起動
+```bash
+mongod
+```
+
+### 5. アプリケーションの起動
+```bash
 npm run dev
 ```
 
-## 📖 各フェーズの詳細説明
+- フロントエンド: http://localhost:3000
+- バックエンドAPI: http://localhost:5000
 
-各開発フェーズで何を作るのか、どんな技術を使うのかを詳しく説明していきます。
+## API エンドポイント
 
-### 🎨 使用するデザインシステム
-- **カラーパレット**: Amazon風の青とオレンジ
-- **レスポンシブデザイン**: スマホ・タブレット・PC対応
-- **アニメーション**: スムーズなユーザー体験
+### 社員管理
+- `GET /api/employees` - 全社員取得
+- `POST /api/employees` - 社員登録
+- `PUT /api/employees/:id` - 社員情報更新
+- `DELETE /api/employees/:id` - 社員削除（論理削除）
+- `GET /api/employees/departments/list` - 部署一覧取得
 
-### 🔧 技術スタック詳細
-- **React.js**: ユーザーインターフェース構築
-- **React Router**: ページ遷移管理
-- **Context API**: 状態管理
-- **Axios**: API通信
-- **Material-UI**: UIコンポーネント
-- **Express.js**: RESTful API
-- **MongoDB**: NoSQLデータベース
-- **JWT**: 認証トークン
-- **Stripe**: 決済処理
+### 在籍状況管理
+- `GET /api/attendance` - 在籍状況取得
+- `POST /api/attendance` - 在籍状況登録・更新
+- `PUT /api/attendance/:id` - 在籍状況更新
+- `DELETE /api/attendance/:id` - 在籍状況削除
+- `GET /api/attendance/date/:date` - 特定日の在籍状況取得
+- `POST /api/attendance/bulk` - 一括登録・更新
 
-## 📝 学習リソース
+### 統計情報
+- `GET /api/stats/today` - 今日の統計
+- `GET /api/stats/date/:date` - 特定日の統計
+- `GET /api/stats/weekly` - 週間統計
+- `GET /api/stats/monthly` - 月間統計
+- `GET /api/stats/departments` - 部署別統計
 
-プロジェクトを進める上で役立つリンク：
-- [React公式ドキュメント](https://ja.react.dev/)
-- [Node.js公式ドキュメント](https://nodejs.org/ja/)
-- [MongoDB公式チュートリアル](https://www.mongodb.com/docs/)
+## データモデル
+
+### Employee（社員）
+```javascript
+{
+  name: String,          // 社員名
+  department: String,    // 部署
+  position: String,      // 役職
+  email: String,         // メールアドレス
+  avatar: String,        // アバター画像URL
+  startDate: Date,       // 入社日
+  isActive: Boolean      // アクティブ状態
+}
+```
+
+### AttendanceStatus（在籍状況）
+```javascript
+{
+  employeeId: ObjectId,  // 社員ID
+  date: Date,           // 日付
+  status: String,       // ステータス (present/absent/meeting/remote/vacation)
+  startTime: String,    // 開始時間 (HH:MM)
+  endTime: String,      // 終了時間 (HH:MM)
+  note: String,         // 備考
+  createdBy: String,    // 作成者
+  updatedBy: String     // 更新者
+}
+```
+
+## 使用方法
+
+### 1. 社員の登録
+1. 管理者がシステムに社員情報を登録
+2. 部署、役職、メールアドレスなどの基本情報を入力
+
+### 2. 在籍状況の更新
+1. カレンダーから対象日を選択
+2. 社員を選択してステータスを設定
+3. 必要に応じて開始・終了時間や備考を入力
+
+### 3. 在籍状況の確認
+1. カレンダー表示で一覧確認
+2. 部署フィルターで特定部署のみ表示
+3. ステータスフィルターで特定状況のみ表示
+
+## 開発
+
+### ディレクトリ構成
+```
+attendance-management-app/
+├── client/                 # React フロントエンド
+│   ├── src/
+│   │   ├── components/     # Reactコンポーネント
+│   │   ├── types.ts        # TypeScript型定義
+│   │   └── ...
+│   └── package.json
+├── server/                 # Express バックエンド
+│   ├── models/             # Mongooseモデル
+│   ├── routes/             # APIルート
+│   ├── index.js            # サーバーエントリーポイント
+│   └── package.json
+└── package.json            # ルートパッケージ
+```
+
+### 開発用コマンド
+```bash
+npm run dev         # フロントエンド・バックエンド同時起動
+npm run client      # フロントエンドのみ起動
+npm run server      # バックエンドのみ起動
+npm run build       # プロダクションビルド
+```
+
+## ライセンス
+
+MIT License
+
+## サポート
+
+質問や問題がある場合は、GitHubのIssuesページでお知らせください。
 
 ---
 
-**注意**: このプロジェクトは学習目的で作成されています。実際の商用利用には追加のセキュリティ対策が必要です。
+**🏢 効率的な在籍管理で、よりスマートなオフィス運営を実現しましょう！**

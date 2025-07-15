@@ -1,7 +1,7 @@
 {
-  "name": "amazon-clone",
+  "name": "attendance-management-app",
   "version": "1.0.0",
-  "description": "A full-stack ecommerce website similar to Amazon",
+  "description": "社内在籍管理アプリ - 社員の在席状況をカレンダー形式で管理するWebアプリケーション",
   "main": "server/index.js",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -12,8 +12,8 @@
     "install-server": "cd server && npm install",
     "install-all": "npm run install-server && npm run install-client"
   },
-  "keywords": ["ecommerce", "amazon-clone", "react", "nodejs", "mongodb"],
-  "author": "Amazon Clone Developer",
+  "keywords": ["attendance", "employee-management", "calendar", "react", "nodejs", "typescript"],
+  "author": "Attendance Management Developer",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^7.6.0",
